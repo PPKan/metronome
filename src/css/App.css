@@ -1,7 +1,46 @@
 @import './reset.css';
 @import './button.scss';
 
-
-h1 {
-  font-size: 20rem;
+html {
+  font-family: roboto, sans-seirf;
+  color: #0097a7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+body {
+  width: 90%;
+}
+
+.pitch {
+  font-size: 20rem;
+  text-align: center;
+}
+
+.pitch__bpm {
+  font-size: 10rem;
+}
+
+.speed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.speed__slider {
+  flex: 5;
+}
+
+.speed__button {
+  flex: 1;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
