@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import "./css/App.css";
-import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
+import "./css/App.scss";
+import {
+  AiFillPlayCircle,
+  AiFillPauseCircle,
+  AiFillGithub,
+} from "react-icons/ai";
 import { FiMinusCircle, FiPlusCircle } from "react-icons/fi";
 import metronome from "./sound/metronome.mp3";
 import Slider from "@mui/material/Slider";
@@ -99,37 +103,48 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <h1 className="pitch">
-          {pitch}
-          <span className="pitch__bpm">BPM</span>
-        </h1>
-        <div className="speed">
-          <FiMinusCircle
-            size={80}
-            className="button speed__button"
-            onClick={() => handleMinusPitch()}
-          />
-          <Slider
-            className="speed__slider"
-            value={pitch}
-            onChange={handleChange}
-            min={50}
-            max={250}
-            sx={[
-              { height: 20 },
-              { ".MuiSlider-thumb": { height: 35, width: 35 } },
-            ]}
-            onChangeCommitted={() => {
-              handleReplay();
-            }}
-          />
-          <FiPlusCircle
-            size={80}
-            className="button speed__button"
-            onClick={() => handleAddPitch()}
-          />
+        <div className="body">
+          <h1 className="pitch">
+            {pitch}
+            <span className="pitch__bpm">BPM</span>
+          </h1>
+          <div className="speed">
+            <FiMinusCircle
+              size={80}
+              className="button speed__button"
+              onClick={() => handleMinusPitch()}
+            />
+            <Slider
+              className="speed__slider"
+              value={pitch}
+              onChange={handleChange}
+              min={50}
+              max={250}
+              sx={[
+                { height: 20 },
+                { ".MuiSlider-thumb": { height: 35, width: 35 } },
+              ]}
+              onChangeCommitted={() => {
+                handleReplay();
+              }}
+            />
+            <FiPlusCircle
+              size={80}
+              className="button speed__button"
+              onClick={() => handleAddPitch()}
+            />
+          </div>
+          <div className="control">{buttonActive()}</div>
         </div>
-        <div className="control">{buttonActive()}</div>
+        <footer className="footer">
+          Powered by&nbsp;
+          <a href="https://github.com/PPKan/metronome" target="_blank" rel="noreferrer">
+          <span className="footer__icon">
+            <AiFillGithub  size={25}/>
+          </span>
+          &nbsp;PPKan
+          </a>
+        </footer>
       </ThemeProvider>
     </>
   );
