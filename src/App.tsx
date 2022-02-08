@@ -31,10 +31,19 @@ function App() {
 
   const [nowPlaying, setNowPlaying] = useState<boolean>(false);
 
-  const handlePlay = (isPlaying: boolean) => {
+  const handlePlay = () => {
     if (nowPlaying) return;
     setNowPlaying(true);
     metronomeSound.play();
+    setIntervalID(
+      setInterval(() => {
+        metronomeSound.play();
+      }, bpm)
+    );
+  };
+
+  const handleReplay = () => {
+    clearInterval(intervalID);
     setIntervalID(
       setInterval(() => {
         metronomeSound.play();
@@ -49,10 +58,16 @@ function App() {
 
   const handleAddPitch = () => {
     setPitch((prevPitch) => prevPitch + 1);
+    if (nowPlaying) {
+      handleReplay();
+    }
   };
 
   const handleMinusPitch = () => {
     setPitch((prevPitch) => prevPitch - 1);
+    if (nowPlaying) {
+      handleReplay();
+    }
   };
 
   const handleChange = (e: any) => {
@@ -73,7 +88,7 @@ function App() {
         <AiFillPlayCircle
           size={120}
           className="button control__button"
-          onClick={() => handlePlay(nowPlaying)}
+          onClick={() => handlePlay()}
         />
       );
     }
@@ -96,14 +111,15 @@ function App() {
             className="speed__slider"
             value={pitch}
             onChange={handleChange}
-            aria-label="Default"
-            valueLabelDisplay="auto"
             min={50}
             max={250}
             sx={[
               { height: 20 },
               { ".MuiSlider-thumb": { height: 35, width: 35 } },
             ]}
+            onChangeCommitted={() => {
+              handleReplay();
+            }}
           />
           <FiPlusCircle
             size={80}
@@ -111,9 +127,7 @@ function App() {
             onClick={() => handleAddPitch()}
           />
         </div>
-        <div className="control">
-          {buttonActive()}
-        </div>
+        <div className="control">{buttonActive()}</div>
       </ThemeProvider>
     </>
   );
