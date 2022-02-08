@@ -89,7 +89,7 @@ function App() {
         <div className="speed">
           <FiMinusCircle
             size={80}
-            className="button speed__minus"
+            className="button speed__button"
             onClick={() => handleMinusPitch()}
           />
           <Slider
@@ -107,7 +107,7 @@ function App() {
           />
           <FiPlusCircle
             size={80}
-            className="button speed__plus"
+            className="button speed__button"
             onClick={() => handleAddPitch()}
           />
         </div>
