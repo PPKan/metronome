@@ -1,0 +1,7 @@
+@import './reset.css';
+@import './button.scss';
+
+
+h1 {
+  font-size: 20rem;
+}
