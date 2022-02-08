@@ -1,4 +1,5 @@
 declare module "*.wav"
+declare module "*.mp3"
 declare module '@mui/material/styles' {
   interface Theme {
     status: {

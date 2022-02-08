@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./css/App.css";
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
 import { FiMinusCircle, FiPlusCircle } from "react-icons/fi";
-import metronome from "./sound/metronome.wav";
+import metronome from "./sound/metronome.mp3";
 import Slider from "@mui/material/Slider";
 import { createTheme } from "@mui/material/";
 import { cyan, green } from "@mui/material/colors";
@@ -43,12 +43,14 @@ function App() {
   };
 
   const handleReplay = () => {
-    clearInterval(intervalID);
-    setIntervalID(
-      setInterval(() => {
-        metronomeSound.play();
-      }, bpm)
-    );
+    if (nowPlaying) {
+      clearInterval(intervalID);
+      setIntervalID(
+        setInterval(() => {
+          metronomeSound.play();
+        }, bpm)
+      );
+    }
   };
 
   const handlePause = () => {
